@@ -1,5 +1,44 @@
+<?php
+    if(isset($_POST['submit']))
+    {
+        //print_r('Nome: ' . $_POST['nome']);
+        //print_r('<br>');
+        //print_r('Email: ' . $_POST['email']);
+        //print_r('<br>');
+        //print_r('Senha: ' . $_POST['senha']);
+        //print_r('<br>');
+        //print_r('Sexo: ' . $_POST['genero']);
+        //print_r('<br>');
+        //print_r('Data de Nascimento: ' . $_POST['dataNasc']);
+        //print_r('<br>');
+        //print_r('Telefone: ' . $_POST['telefone']);
+        //print_r('<br>');
+        //print_r('Endereço: ' . $_POST['endereco']);
+        //print_r('<br>');
+        //print_r('Estado: ' . $_POST['estado']);
+        //print_r('<br>');
+        //print_r('Cidade: ' . $_POST['cidade']);
+
+        include_once('conexao.php');
+
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $sexo = $_POST['genero'];
+        $dataNasc = $_POST['dataNasc'];
+        $telefone = $_POST['telefone'];
+        $endereco = $_POST['endereco'];
+        $estado = $_POST['estado'];
+        $cidade = $_POST['cidade'];
+
+$result = mysqli_query($conexao, "INSERT INTO usuarios (nome, email, senha, sexo, dataNasc, telefone, endereco, estado, cidade) 
+VALUES ('$nome', '$email', '$senha', '$sexo', '$dataNasc', '$telefone', '$endereco', '$estado', '$cidade')");
+    }
+
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +48,7 @@
 </head>
 <body>
     <div class="box">
-        <form action="">
+        <form action="index.php" method="POST">
             <fieldset>
             <legend><b>Cadastro de Clientes</b></legend>  
             <br>
@@ -41,8 +80,13 @@
                 <input type="date" name="dataNasc" id="dataNasc" required>
             <br><br><br>
             <div class="inputbox">
-                <input type="text" name="cidade" id="cidade" class="inputUser" required>
-                    <label for="cidade" class="labelInput"><b>Cidade</b></label>
+                <input type="tel" name="telefone" id="telefone" class="inputUser" required>
+                    <label for="telefone" class="labelInput"><b>Telefone</b></label>
+            </div>
+            <br><br>
+            <div class="inputbox">
+                <input type="text" name="endereco" id="endereco" class="inputUser" required>
+                    <label for="endereco" class="labelInput"><b>Endereço</b></label>
             </div>
             <br><br>
             <div class="inputbox">
@@ -51,8 +95,8 @@
             </div>
             <br><br>
             <div class="inputbox">
-                <input type="text" name="endereco" id="endereco" class="inputUser" required>
-                    <label for="endereco" class="labelInput"><b>Endereço</b></label>
+                <input type="text" name="cidade" id="cidade" class="inputUser" required>
+                    <label for="cidade" class="labelInput"><b>Cidade</b></label>
             </div>
             <br><br>
             <input type="submit" name="submit" id="submit">
